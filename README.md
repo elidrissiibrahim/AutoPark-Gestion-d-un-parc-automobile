@@ -102,3 +102,7 @@ Le reste de la page reste adapté à la largeur de l'écran.
 
 Compléter ensuite ce README avec vos choix, les fonctionnalités réalisées,
 l'organisation de vos modules et le lien de déploiement.
+
+
+<img width="1536" height="864" alt="Capture d&#39;écran 2026-10-30 143126" src="https://github.com/user-attachments/assets/70d4dfbb-7607-45d8-acaa-13780687d1b6" />
+
