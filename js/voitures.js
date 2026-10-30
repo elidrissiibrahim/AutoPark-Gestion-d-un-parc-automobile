@@ -1,4 +1,13 @@
 import { voituresInitiales } from "./data.js"
+let voitures = JSON.parse(
+    localStorage.getItem("voitures")
+) || [...voituresInitiales];
+function sauvegarderVoitures() {
+    localStorage.setItem(
+        "voitures",
+        JSON.stringify(voitures)
+    );
+}
 
 const marque = document.getElementById("marque");
 const modele = document.getElementById("modele");
@@ -6,28 +15,9 @@ const immatriculation = document.getElementById("immatriculation");
 const categorie = document.getElementById("categorie");
 const prixjour = document.getElementById("prix-jour");
 const statut = document.getElementById("statut");
-//if matricul in order one buy one 
-// function conteur()
-// {
-//     let messagefex = "AUTO-";
-//     let nbr1 = 0;
-//     let nbr2 = 0;
-//     let nbr3 = 0;
-//     for (let i = 0; i <= voituresInitiales.length; i++) {
-//         nbr3++;
+const form = document.querySelector("form");
+const recherche = document.getElementById("recherche")
 
-//         if (nbr3 == 10) {
-//             nbr3 = 0;
-//             nbr2++;
-//         }
-
-//         if (nbr2 == 10) {
-//             nbr2 = 0;
-//             nbr1++;
-//         }
-//     }
-//     return messagefex + nbr1 + nbr2 + nbr3
-// }
 function creerElement(tag, classList = "", content = "") {
     const element = document.createElement(tag);
     element.className = classList
@@ -36,11 +26,11 @@ function creerElement(tag, classList = "", content = "") {
 }
 const btn = document.getElementById("bouton-enregistrer");
 
-function affecher() {
+function affecher(liste = voitures) {
     const tableau = document.querySelector("tbody");
     tableau.textContent = "";
 
-    voituresInitiales.forEach(function (voitur) {
+    liste.forEach(function (voitur) {
 
         const line = creerElement("tr", "", "");
 
@@ -62,13 +52,38 @@ function affecher() {
         const tagdh = creerElement("span", "", "DH / jour");
         column5.append(tagdh);
 
-        const column6 = creerElement("td",);
+        const column6 = creerElement("td", "","");
+        let rowdistat;
+        switch (voitur.statut) {
+            case "Disponible":
+                rowdistat = creerElement("span","badge badge-disponible",voitur.statut);
+                break;
+            case "Louée":
+                rowdistat = creerElement("span","badge badge-louee",voitur.statut);
+                break;
+            case "En maintenance":
+                rowdistat = creerElement("span","badge badge-maintenance",voitur.statut);
+                break;
+        }
+        column6.append(rowdistat); 
+        
+
+        const column7 = creerElement("td",);
         const rowaction = creerElement("div", "row-actions", "");
         const modifierbutton = creerElement("button", "button button-edit", "Modifier");
+
+        modifierbutton.addEventListener("click" , () =>{
+            Modifier(voitur.id);
+        })
+
         const supprimerbutton = creerElement("button", "button button-delete", "Supprimer");
 
+        supprimerbutton.addEventListener("click" , () =>{
+            supprimer(voitur.id);
+        });
+    
         rowaction.append(modifierbutton, supprimerbutton);
-        column6.append(rowaction);
+        column7.append(rowaction);
 
         line.append(
             column1,
@@ -76,7 +91,8 @@ function affecher() {
             column3,
             column4,
             column5,
-            column6
+            column6,
+            column7
         );
         tableau.appendChild(line);
     });
@@ -84,7 +100,7 @@ function affecher() {
 
 function ajouter(event) {
     event.preventDefault();
-    let exestnum = voituresInitiales.some(voitur => voitur.immatriculation === immatriculation.value)
+    let exestnum = voitures.some(voitur => voitur.immatriculation === immatriculation.value)
 
     if (!(exestnum) && validationDeform(immatriculation.value))
     {
@@ -93,7 +109,7 @@ function ajouter(event) {
         }
         else {
             let nvvoitur = {
-                "id": voituresInitiales.length + 1,
+                "id": voitures.length + 1,
                 "marque": marque.value,
                 "modele": modele.value,
                 "immatriculation": immatriculation.value,
@@ -101,14 +117,11 @@ function ajouter(event) {
                 "prixJour": prixjour.value,
                 "statut": statut.value
             };
-            voituresInitiales.push(nvvoitur);
-
-            marque.value = "";
-            modele.value = "";
-            immatriculation.value = "";
-            categorie.value = "";
-            prixjour.value = "";
-            statut.value = "";
+            voitures.push(nvvoitur);
+            console.log(voitures);
+            
+            sauvegarderVoitures();
+            form.reset();
             affecher();
         }   
     }
@@ -116,21 +129,39 @@ function ajouter(event) {
         alert("Votre numero de matricul est deja execst or la form est inccorect");
         immatriculation.value ="";
     }
-
 }
-
-function Modifier() {
-
+function Modifier(id) {
 }
-function Supprimer() {
+function supprimer(id) {
+if(!confirm(`vous vollez supprem cette voiture ?`)){return};
 
+    let index = voitures.findIndex(voitur => voitur.id == id)
+    if (index !== -1){
+        voitures.splice(index , 1);
+        console.log(voitures);
+        sauvegarderVoitures();
+        affecher();
+    }
 }
 function validationDeform(immatriculation) {
     const pattern = /^[A-Z]+-\d+$/;
     let valid = pattern.test(immatriculation);
     return valid ;
 }
+function clasmentettrie(){
+ const elemdcherch = recherche.value ;
+ 
+ const resultat = voitures.filter((voitur) => {
+    return(
+        voitur.marque.includes(elemdcherch)||
+        voitur.modele.includes(elemdcherch)||
+        voitur.immatriculation.includes(elemdcherch)||
+        voitur.categorie.includes(elemdcherch)||
+        voitur.prixJour.toString().includes(elemdcherch)||
+        voitur.statut.includes(elemdcherch))
+ });
+ affecher(resultat);
+}
+recherche.addEventListener('input', clasmentettrie);
 btn.addEventListener("click", ajouter);
-console.log(voituresInitiales);
-
 affecher();
