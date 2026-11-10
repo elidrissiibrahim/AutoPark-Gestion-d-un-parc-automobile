@@ -104,4 +104,5 @@ Compléter ensuite ce README avec vos choix, les fonctionnalités réalisées,
 l'organisation de vos modules et le lien de déploiement.
 
 <img width="1182" height="592" alt="jira" src="https://github.com/user-attachments/assets/0c080882-5a93-4317-a37b-51e01c9202c7" />
+<img width="1194" height="564" alt="Capture d&#39;écran 2026-11-10 085517" src="https://github.com/user-attachments/assets/f2a3b0a7-0f7e-4533-a1ff-b9c4d2429d34" />
 
