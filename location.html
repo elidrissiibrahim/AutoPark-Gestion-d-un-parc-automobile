@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Composez votre location — AutoPark</title>
+  <link rel="stylesheet" href="css/location.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-[#f4f6fa]">
+
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="voitures.html" aria-label="AutoPark — Gestion du parc">
+        <span class="brand-mark" aria-hidden="true">A<span>.</span></span>
+        <span>AutoPark<small>ATLAS AUTO</small></span>
+      </a>
+      <nav aria-label="Navigation principale">
+        <a href="index.html">Dashboard</a>
+        <a href="voitures.html">Gestion du parc</a>
+        <a href="location.html" aria-current="page">Ma location</a>
+      </nav>
+      <span class="agency-label">Agence de location</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="m-[10px]" aria-labelledby="titre-page">
+      <p class="text-[#2855d7] text-[10px] font-black tracking-[1.6px] mb-[8px]">VOTRE LOCATION SUR MESURE</p>
+      <h1 id="titre-page" class="mb-3 text-3xl font-bold">Composez votre location</h1>
+      <p class="text-[#627184] text-sm">Votre voiture, vos dates, vos options. À vous de choisir.</p>
+    </section>
+    <section class="flex justify-evenly mb-8 p-4 bg-white rounded-xl">
+      <div class="gap-3 md:flex items-center">
+        <span class="bg-[#2855d7] text-white size-8 flex justify-center items-center rounded-full">1</span>
+        <p class="text-xs md:text-sm">Véhicules</p>
+      </div>
+      <div class="gap-3 md:flex items-center">
+        <span class="bg-[#F4F6FA] text-[#697C94] size-8 flex justify-center items-center rounded-full">2</span>
+        <p class="text-xs md:text-sm">Récupération</p>
+      </div>
+      <div class="gap-3 md:flex items-center">
+        <span class="bg-[#F4F6FA] text-[#697C94] size-8 flex justify-center items-center rounded-full">3</span>
+        <p class="text-xs md:text-sm">Options</p>
+      </div>
+      <div class="gap-3 md:flex items-center">
+        <span class="bg-[#F4F6FA] text-[#697C94] size-8 flex justify-center items-center rounded-full">4</span>
+        <p class="text-xs md:text-sm">Récapitulatif</p>
+      </div>
+    </section>
+    <section class="mb-8 p-4 grid grid-cols-1 gap-3 lg:grid-cols-3">
+      <form class="form-card p-8 bg-white rounded-xl col-span-1 lg:col-span-2">
+
+        <div class="section-heading mb-3">
+          <div>
+            <p class="text-[#2855d7] text-[10px] font-black tracking-[1.6px] mb-[8px]">01 / VÉHICULE</p>
+            <h2 id="titre-formulaire" class="mt-3 mb-3 text-xl font-bold">Choisissez votre véhicule</h2>
+          </div>
+          <span class="text-[#627184] text-sm">Sélectionnez une voiture disponible et votre période de location.</span>
+        </div>
+        <div id="radio_voitures" class="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
+        </div>
+
+        <hr class="text-[#D8E1EF]">
+        <h3 class="font-bold text-base my-4">Votre période de location</h3>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-3">
+          <div>
+            <label for="dateDebut">Date de début *</label><br>
+            <input type="date" id="dateDebut" class="border-1 border-[#D8E1EF] rounded-md p-2 w-full">
+          </div>
+          <div>
+            <label for="dateFin">Date de fin *</label><br>
+            <input type="date" id="dateFin" class="border-1 border-[#D8E1EF] rounded-md p-2 w-full">
+          </div>
+        </div>
+        <p id="duree-text" class="bg-[#EEF2FF] text-[#2852E3] rounded-xl p-4 mb-4">
+          Durée : -- jours. Les dates de début et de fin sont incluses.
+        </p>
+
+        <hr class="text-[#D8E1EF] mb-4">
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:justify-between">
+          <button type="button" id="Recommencer" class="border-1 border-[#D8E1EF] rounded-xl md:col-start-1 py-2">
+            Recommencer
+          </button>
+          <button type="button" id="Suivant" class="bg-[#2852E3] text-white rounded-xl md:col-start-4 py-2">
+            Suivant
+          </button>
+        </div>
+
+      </form>
+      <div id="recap-panel" class="bg-white rounded-xl p-4 col-span-1">
+        <p class="text-[#627184] text-[10px] font-black tracking-[1.6px] mb-2">VOTRE LOCATION</p>
+        <p class="text-[#627184] text-sm">Aucun véhicule sélectionné.</p>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="js/location.js"></script>
+
+</body>
+</html>

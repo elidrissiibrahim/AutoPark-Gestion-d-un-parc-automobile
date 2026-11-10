@@ -202,7 +202,7 @@ function validationDeform(immatriculation) {
 }
 function clasmentettrie(){
  const elemdcherch = recherche.value ;
- 
+
  const resultat = voitures.filter((voitur) => {
     return(
         voitur.marque.includes(elemdcherch)||

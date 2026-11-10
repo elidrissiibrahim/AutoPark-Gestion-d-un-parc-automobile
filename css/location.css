@@ -1,0 +1,102 @@
+:root {
+  --page: #f4f6fa;
+  --surface: #ffffff;
+  --text: #18283b;
+  --muted: #627184;
+  --border: #dbe2eb;
+  --primary: #2855d7;
+  --primary-dark: #1e41a6;
+  --radius: 14px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+a {
+  color: inherit;
+}
+button,
+select {
+  cursor: pointer;
+}
+button {
+  border: 0;
+}
+[hidden] {
+  display: none !important;
+}
+.container {
+  width: min(1240px, calc(100% - 64px));
+  margin: 0 auto;
+}
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.header-content {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
+.brand-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--primary);
+  color: white;
+  font-size: 29px;
+}
+.brand-mark span {
+  color: #c4d2ff;
+}
+.brand small {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 2.3px;
+}
+nav {
+  display: flex;
+  gap: 8px;
+}
+nav a {
+  padding: 11px 17px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-weight: 700;
+  text-decoration: none;
+}
+nav a:hover {
+  background: #f2f5fb;
+  color: var(--text);
+}
+nav a[aria-current="page"] {
+  background: #ecf1ff;
+  color: #2449b5;
+}
